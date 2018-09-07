@@ -23,9 +23,9 @@ class WeatherContent extends Component {
 			forecastObj = selectedTown.forecast.forecastday
 			forecastList = forecastObj.map(item => <div className = "forecast-block">
 														<span>{item.date}</span> 
-														<span>{item.day.avgtemp_c}{tempText}</span> 
-														<span>{item.day.avgtemp_f}</span>
-														<span>{item.day.condition.text}</span>
+														<span>{isCelsius ? item.day.avgtemp_c : item.day.avgtemp_f} &#176; {tempText}</span> 
+														<span>{isKmPerHour? item.day.avgvis_km : item.day.avgvis_miles} {tempSpeed}</span>
+														<img src={item.day.condition.icon}/>
 													</div>)
 
 
@@ -78,7 +78,7 @@ class WeatherContent extends Component {
 							
 						</div>
 						<div className="weather-info__forcast">
-								Прогноз погоды
+								<h2>Прогноз погоды</h2>
 								{/*
 								<div >
 									<span>{selectedTown.forecast.forecastday[1].date}</span><br/>
@@ -88,7 +88,7 @@ class WeatherContent extends Component {
 								</div>
 							*/}
 								<div className="forecast__container">
-									{forecastList}
+									{forecastList.slice(1)}
 
 								</div>
 							
