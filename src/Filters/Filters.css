@@ -1,6 +1,7 @@
 .filters {
 	flex: 0 0 230px;
   	padding: 20px;
+  	transition: all 0.3s;
 }
 
 .filter {
@@ -25,4 +26,18 @@
 .filter__active:hover {
 	background: #40a9ff;
 	border-color: #40a9ff;
+}
+.filters--toggle {
+	background: white;
+	height: 100%;
+	position: absolute;
+	left: 1850px;
+	transition: all 0.8s;
+
+
+}
+@media (max-width: 750px) {
+	.filters {
+		order: 2;
+	}
 }

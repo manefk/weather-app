@@ -9,7 +9,7 @@
 }
 .weather-info {
   
-  height: 300px;
+  min-height: 300px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -72,11 +72,31 @@
 }
 
 .forecast__container > div {
+
   background: #999;
   border: 1px solid grey;
   width: 13%;
    margin-bottom: 15px;
 }
 .forecast__container > div span {
+  font-size: 16px;
   display: block;
 }
+@media (max-width: 1200px) {
+  .forecast__container >div{
+    width: 48%;
+  }
+}
+@media (max-width: 1000px) {
+  .forecast__container >div{
+    width: 100%;
+  }
+}
+@media (max-width: 750px) {
+  .forecast__container >div{
+    flex: 1 1 100%;
+  }
+
+}
+
+

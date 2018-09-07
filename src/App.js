@@ -20,7 +20,8 @@ class App extends Component {
     isCelsius: true,
     isKmPerHour: true,
     successRequest: true,
-    forecast: false
+    forecast: false,
+    showFilters: true
 
   }
 
@@ -78,6 +79,11 @@ class App extends Component {
     const {town} = this.state;
     }
   */
+  toggleFilters = () => {
+    this.setState({
+      showFilters: !this.state.showFilters,
+    })
+  }
   render() {
     let { town, townData, isCelsius, isKmPerHour, successRequest } = this.state;
 
@@ -102,6 +108,8 @@ class App extends Component {
           switchSpeed={this.switchSpeed}
           isCelsius={isCelsius}
           isKmPerHour={isKmPerHour}
+          toggleFilters={this.toggleFilters}
+          showFilters={this.state.showFilters}
         />
       </div>
     );
