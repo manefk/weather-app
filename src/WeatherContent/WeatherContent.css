@@ -1,5 +1,60 @@
-.weather-info__forecast {
-	width: 100%;
-	background: #333;
+.weather-content {
+  background:#F1F4F5;
+  flex: 1 1 auto;
+  padding: 20px;
+
+}
+.weather-content span {
+  font-size: 25px;
+}
+.weather-info {
+  
+  height: 300px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  background: white;
+  box-shadow: 0 1px 1px rgba(0,0,0,.05);
+  padding: 20px;
+
+}
+.weather-info__descr {
+
+  flex: 1 1 30%;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+.weather-info__descr > img {
+  position: relative;
+  right: 25px;
+}
+.weather-info__temp {
+  flex: 1 1 40%;
+}
+.weather-info__temp > span{
+  font-size: 72px;
+}
+.weather-info__aux {
+  flex: 1 1 30%;
+  text-align: right;
+}
+.weather-info__img{
+  width: 150px;
+  height: auto;
+}
+
+
+.weather-info__forcast {
+	margin-top: 20px;
+	height: 300px;
+	 
+ 	 align-items: center;
+  	background: white;
+	  box-shadow: 0 1px 1px rgba(0,0,0,.05);
+	  padding: 20px;
+
 	
+	
+
 }

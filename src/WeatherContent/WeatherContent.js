@@ -61,6 +61,7 @@ class WeatherContent extends Component {
 						</div>
 						<div className="weather-info__forcast">
 								Прогноз погоды
+								<div>{selectedTown.forecast.forecastday[0].day.avgtemp_c}</div>
 						</div>
 					</React.Fragment>
 				)}
