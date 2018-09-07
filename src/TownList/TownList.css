@@ -1,0 +1,64 @@
+.town-list {
+  background: #EDEDED;
+  flex: 0 0 300px;
+  padding: 20px;
+}
+
+.town-list ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding-left: 0px;
+}
+.town-list__town {
+  
+  
+  text-align: left;
+  font-size: 25px;
+  width: 200px;
+  
+  flex: 1 1 100%;
+  align-items: center;
+  cursor: pointer;
+  color: #444;
+}
+.town-list__town--active {
+  
+  color: #424242;
+  background: #E2E2E2;
+}
+.town-list__town span {
+  padding-left: 10px;
+}
+.town-list__town:hover {
+  
+  color: #222;
+}
+
+
+
+
+
+
+.town-input {
+  padding: 10px;
+  color: #757575;
+  border-radius: 7px;
+  box-shadow: none;
+  border-style: solid;
+  border: 1px solid grey;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+
+.remove-container {
+  display: flex;
+}
+.remove-img {
+  width: 17px;
+}
+.remove-town {
+  padding: 0 10px;
+  }
+

@@ -7,6 +7,8 @@ class WeatherContent extends Component {
 		const tempSpeed = isKmPerHour ? `км/c` : `м/с`;
 		let tempData = "";
 		let tempSpeedData = "";
+		let forecastObj;
+		let forecastList;
 		if (selectedTown.current) {
 			tempData = isCelsius ? selectedTown.current.temp_c : selectedTown.current.temp_f;
 		}
@@ -17,12 +19,28 @@ class WeatherContent extends Component {
 		if (!successRequest) {
 			message = "Неправильно введен город";
 		}
+		if (selectedTown.current) { 
+			forecastObj = selectedTown.forecast.forecastday
+			forecastList = forecastObj.map(item => <div className = "forecast-block">
+														<span>{item.date}</span> 
+														<span>{item.day.avgtemp_c}{tempText}</span> 
+														<span>{item.day.avgtemp_f}</span>
+														<span>{item.day.condition.text}</span>
+													</div>)
+
+
+		}
+
+		
+		
+		
 		return (
 			<div className="weather-content">
 				{Object.keys(selectedTown).length == 0 ? (
 					message
 				) : (
 					<React.Fragment>
+
 						<div className="weather-info">
 							<div className="weather-info__descr">
 								<img className="weather-info__img" src={selectedTown.current.condition.icon} />
@@ -61,8 +79,21 @@ class WeatherContent extends Component {
 						</div>
 						<div className="weather-info__forcast">
 								Прогноз погоды
-								<div>{selectedTown.forecast.forecastday[0].day.avgtemp_c}</div>
+								{/*
+								<div >
+									<span>{selectedTown.forecast.forecastday[1].date}</span><br/>
+									<span>{selectedTown.forecast.forecastday[1].day.avgtemp_c}</span><br/>
+									<span>{selectedTown.forecast.forecastday[1].day.avgtemp_f}</span><br/>
+									<span>{selectedTown.forecast.forecastday[1].day.condition.text}</span><br/>
+								</div>
+							*/}
+								<div className="forecast__container">
+									{forecastList}
+
+								</div>
+							
 						</div>
+
 					</React.Fragment>
 				)}
 			</div>

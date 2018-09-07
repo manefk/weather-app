@@ -44,121 +44,14 @@
    font-size: 55px;
 
 }
-.town-list {
-  background: #EDEDED;
-  flex: 0 0 300px;
-  padding: 20px;
-}
-
-.town-list__input {
-  
-
-}
-.town-list ul {
-  display: flex;
-  flex-wrap: wrap;
-  list-style: none;
-  padding-left: 0px;
-}
-.town-list__town {
-  
-  
-  text-align: left;
-  font-size: 25px;
-  width: 200px;
-  
-  flex: 1 1 100%;
-  align-items: center;
-  cursor: pointer;
-  color: #444;
-}
-.town-list__town--active {
-  
-  color: #424242;
-  background: #E2E2E2;
-}
-.town-list__town span {
-  padding-left: 10px;
-}
-.town-list__town:hover {
-  
-  color: #222;
-}
-
-
-.weather-content {
-  background:#F1F4F5;
-  flex: 1 1 auto;
-  padding: 20px;
-
-}
-.weather-content span {
-  font-size: 25px;
-}
-.weather-info {
-  
-  height: 300px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  background: white;
-  box-shadow: 0 1px 1px rgba(0,0,0,.05);
-  padding: 20px;
-
-}
-.weather-info__descr {
-
-  flex: 1 1 30%;
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-}
-.weather-info__descr > img {
-  position: relative;
-  right: 25px;
-}
-.weather-info__temp {
-  flex: 1 1 40%;
-}
-.weather-info__temp > span{
-  font-size: 72px;
-}
-.weather-info__aux {
-  flex: 1 1 30%;
-  text-align: right;
-}
-.weather-info__img{
-  width: 150px;
-  height: auto;
-}
-
-
-
-.town-input {
-  padding: 10px;
-  color: #757575;
-  border-radius: 7px;
-  box-shadow: none;
-  border-style: solid;
-  border: 1px solid grey;
-  font-size: 15px;
-}
+.
 .input__button img {
   
   width: 11px;
   height: auto;
 }
 
-.remove-container {
-  display: flex;
-}
-.remove-img {
-  width: 17px;
-}
-.remove-town {
-  padding: 0 10px;
-  
-}
+
 
 
 

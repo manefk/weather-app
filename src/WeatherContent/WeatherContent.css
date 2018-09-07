@@ -49,12 +49,23 @@
 	margin-top: 20px;
 	height: 300px;
 	 
- 	 align-items: center;
+ 	align-items: center;
   	background: white;
-	  box-shadow: 0 1px 1px rgba(0,0,0,.05);
-	  padding: 20px;
+	box-shadow: 0 1px 1px rgba(0,0,0,.05);
+	padding: 20px;
 
 	
 	
+
+}
+.forecast-block {
+	font-size: 11px;
+}
+.forecast__container {
+
+	
+}
+
+.forecast__container {
 
 }

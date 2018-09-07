@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Town from "./Town/Town";
 import TownInput from "./TownInput/TownInput";
+import "./TownList.css";
 
 class TownList extends Component {
 	state = {
