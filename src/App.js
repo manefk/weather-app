@@ -20,11 +20,12 @@ class App extends Component {
     isCelsius: true,
     isKmPerHour: true,
     successRequest: true,
+    forecast: false
 
   }
 
   getTownPromise = town => fetch(
-      `http://api.apixu.com/v1/current.json?key=b2ba067623484cd9ab9135213181308&q=${town}&lang=ru`
+      `http://api.apixu.com/v1/forecast.json?key=b2ba067623484cd9ab9135213181308&q=${town}&lang=ru&days=7`
     )
   
 

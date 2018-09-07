@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Town from "./Town/Town";
 import TownInput from "./TownInput/TownInput";
+import "./TownList.css";
 
 class TownList extends Component {
 	state = {
@@ -12,9 +13,7 @@ class TownList extends Component {
 		const localStorageTowns = this.state.localStorageTowns.slice();
 
 		this.props.getTownPromise(town).then(response => {
-			
 			if (response.status == 200 && !localStorageTowns.includes(town)) {
-
 				localStorageTowns.push(town);
 
 				this.setState(
@@ -28,7 +27,7 @@ class TownList extends Component {
 			}
 		});
 	};
-
+	
 	removeLocalStorage = town => {
 		let localStorageTowns = this.state.localStorageTowns.slice();
 		localStorageTowns = localStorageTowns.filter(item => item !== town);
