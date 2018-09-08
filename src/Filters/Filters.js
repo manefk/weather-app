@@ -7,7 +7,7 @@ const Filters = props => {
 
 	return (
 		<div className={toggle}>
-			<span onClick = {toggleFilters}> remove filters</span>
+			<span class="toggle-filters" onClick = {toggleFilters}> remove filters</span>
 
 			<div onClick={switchTemp} className="filter">
 				<span className={isCelsius ? "" : "filter__active"}>in Farenheit</span>

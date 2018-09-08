@@ -1,7 +1,15 @@
 .filters {
+	
+	
+	position: relative;
 	flex: 0 0 230px;
   	padding: 20px;
-  	transition: all 0.3s;
+  	height: 100%;
+  	animation: slide 0.5s forwards;
+animation-delay: 2s;
+
+
+  	
 }
 
 .filter {
@@ -29,15 +37,29 @@
 }
 .filters--toggle {
 	background: white;
-	height: 100%;
+	
 	position: absolute;
-	left: 1850px;
-	transition: all 0.8s;
+	right: -230px;
+	transition: 1s;
+	
+
+
+	
 
 
 }
+
+.toggle-filters {
+	text-align: center;
+	position: absolute;
+	bottom: 50%;
+	right: 90%;
+
+	
+
+}
+
+
 @media (max-width: 750px) {
-	.filters {
-		order: 2;
-	}
+	
 }

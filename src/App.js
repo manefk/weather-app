@@ -12,6 +12,7 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 library.add(faTimes);
 library.add(faPlus);
+// library.add(faArrow);
 
 class App extends Component {
   state = {
