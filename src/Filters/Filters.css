@@ -5,9 +5,7 @@
 	flex: 0 0 230px;
   	padding: 20px;
   	height: 100%;
-  	animation: slide 0.5s forwards;
-animation-delay: 2s;
-
+  	
 
   	
 }
@@ -41,10 +39,6 @@ animation-delay: 2s;
 	position: absolute;
 	right: -230px;
 	transition: 1s;
-	
-
-
-	
 
 
 }
@@ -54,11 +48,21 @@ animation-delay: 2s;
 	position: absolute;
 	bottom: 50%;
 	right: 90%;
-
 	
-
 }
-
+.filters__forecast {
+	font-size: 1.2rem;
+}
+input[type=checkbox] {
+	zoom: 1.5;
+}
+.arrow-icon {
+	font-size: 50px;
+}
+.arrow-icon:hover {
+	color: #1890ff;
+	transition: all 0.1s;
+}
 
 @media (max-width: 750px) {
 	

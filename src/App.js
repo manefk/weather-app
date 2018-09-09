@@ -9,10 +9,13 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faArrowCircleRight} from '@fortawesome/free-solid-svg-icons';
+import { faArrowCircleLeft} from '@fortawesome/free-solid-svg-icons';
 
 library.add(faTimes);
 library.add(faPlus);
-// library.add(faArrow);
+library.add(faArrowCircleRight);
+library.add(faArrowCircleLeft);
 
 class App extends Component {
   state = {
@@ -22,7 +25,8 @@ class App extends Component {
     isKmPerHour: true,
     successRequest: true,
     forecast: false,
-    showFilters: true
+    showFilters: true,
+    showForecast: false,
 
   }
 
@@ -58,23 +62,23 @@ class App extends Component {
     });
     console.log(f)
    
-  };
+  }
 
   handleClick = town => {
     this.getTownData(town);
     this.setState({
       town: town
     });
-  };
+  }
 
   switchTemp = () => {
     this.setState({ isCelsius: !this.state.isCelsius });
-  };
+  }
   switchSpeed = () => {
     this.setState({
       isKmPerHour: !this.state.isKmPerHour
     });
-  };
+  }
   /*
    componentDidMount() {
     const {town} = this.state;
@@ -85,8 +89,14 @@ class App extends Component {
       showFilters: !this.state.showFilters,
     })
   }
+  toggleForecast = () => {
+    this.setState({
+      showForecast: !this.state.showForecast,
+    })
+  }
+
   render() {
-    let { town, townData, isCelsius, isKmPerHour, successRequest } = this.state;
+    let { town, townData, isCelsius, isKmPerHour, successRequest, showForecast } = this.state;
 
     return (
       <div className="App">
@@ -103,6 +113,7 @@ class App extends Component {
           isCelsius={isCelsius}
           isKmPerHour={isKmPerHour}
           successRequest={successRequest}
+          showForecast={showForecast}
         />
         <Filters
           switchTemp={this.switchTemp}
@@ -111,6 +122,7 @@ class App extends Component {
           isKmPerHour={isKmPerHour}
           toggleFilters={this.toggleFilters}
           showFilters={this.state.showFilters}
+          toggleForecast={this.toggleForecast}
         />
       </div>
     );

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./WeatherContent.css"
 class WeatherContent extends Component {
 	render() {
-		const { selectedTown, isCelsius, isKmPerHour, successRequest } = this.props;
+		const { selectedTown, isCelsius, isKmPerHour, successRequest, showForecast } = this.props;
 		const tempText = isCelsius ? `C` : `F`;
 		const tempSpeed = isKmPerHour ? `км/c` : `м/с`;
 		let tempData = "";
@@ -32,7 +32,7 @@ class WeatherContent extends Component {
 		}
 
 		
-		
+		const forecastStyle = `weather-info__forcast${showForecast ? '' : '--toggle'}`
 		
 		return (
 			<div className="weather-content">
@@ -77,16 +77,9 @@ class WeatherContent extends Component {
 							</div>
 							
 						</div>
-						<div className="weather-info__forcast">
+						<div className={forecastStyle}>
 								<h2>Прогноз погоды</h2>
-								{/*
-								<div >
-									<span>{selectedTown.forecast.forecastday[1].date}</span><br/>
-									<span>{selectedTown.forecast.forecastday[1].day.avgtemp_c}</span><br/>
-									<span>{selectedTown.forecast.forecastday[1].day.avgtemp_f}</span><br/>
-									<span>{selectedTown.forecast.forecastday[1].day.condition.text}</span><br/>
-								</div>
-							*/}
+							
 								<div className="forecast__container">
 									{forecastList.slice(1)}
 
