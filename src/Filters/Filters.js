@@ -3,9 +3,10 @@ import "./Filters.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Filters = props => {
-	let { switchTemp, isCelsius, switchSpeed, isKmPerHour, toggleFilters, showFilters, toggleForecast } = props;
+	let { switchTemp, isCelsius, switchSpeed, isKmPerHour, toggleFilters, showFilters, showForecast, toggleForecast, changeDayAmount } = props;
 	let toggle = showFilters ? "filters" : "filters filters" + "--toggle";
-	const awesomeIcon = showFilters ? "arrow-circle-right" : "arrow-circle-left"
+	const awesomeIcon = showFilters ? "arrow-circle-right" : "arrow-circle-left";
+
 
 	return (
 		<div className={toggle}>
@@ -19,10 +20,13 @@ const Filters = props => {
 				<span className={isKmPerHour ? "" : "filter__active"}>km/h</span>
 				<span className={!isKmPerHour ? "" : "filter__active"}>m/h</span>
 			</div>
+			<div onClick = {toggleForecast} className="filter">
+				<span className={!showForecast ? "filter__active" : ""}>current</span>
+				<span className={showForecast ? "filter__active" : ""}>forecast</span>
+			</div>
+			{showForecast ? <input onChange = {changeDayAmount} type="number"/> : null}
 
-			<label class="filters__forecast"> Show forecast 
-			<input onChange = {toggleForecast} type="checkbox"/>
-			</label>
+			
 		</div>
 	);
 };

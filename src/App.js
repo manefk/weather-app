@@ -27,16 +27,23 @@ class App extends Component {
     forecast: false,
     showFilters: true,
     showForecast: false,
+    daysAmount: 7
 
   }
+  changeDayAmount = (e) => {
+    console.log(e.target.value)
+    this.setState({daysAmount: e.target.value});
+    this.getTownData(this.state.townData.location.name)
+  }
 
-  getTownPromise = town => fetch(
-      `http://api.apixu.com/v1/forecast.json?key=b2ba067623484cd9ab9135213181308&q=${town}&lang=ru&days=7`
+  getTownPromise = (town) => fetch(
+      
+      `http://api.apixu.com/v1/forecast.json?key=b2ba067623484cd9ab9135213181308&q=${town}&lang=ru&days=${this.state.daysAmount}`
     )
   
 
-  getTownData = (town, func) => {
-    let f = func || function() {}
+  getTownData = (town) => {
+    
   
     this.getTownPromise(town).then(response => {
     
@@ -45,6 +52,7 @@ class App extends Component {
           `Looks like there was a problem. Status Code: ${response.status}`
         );
         this.setState({
+
           successRequest: false,
           townData: {}
         });
@@ -60,8 +68,6 @@ class App extends Component {
         });
       }
     });
-    console.log(f)
-   
   }
 
   handleClick = town => {
@@ -123,6 +129,10 @@ class App extends Component {
           toggleFilters={this.toggleFilters}
           showFilters={this.state.showFilters}
           toggleForecast={this.toggleForecast}
+          showForecast ={showForecast}
+          getTownData ={this.getTownData}
+          getTownPromise={this.getTownPromise}
+          changeDayAmount={this.changeDayAmount}
         />
       </div>
     );
