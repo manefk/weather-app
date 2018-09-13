@@ -11,6 +11,7 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faArrowCircleRight} from '@fortawesome/free-solid-svg-icons';
 import { faArrowCircleLeft} from '@fortawesome/free-solid-svg-icons';
+import getGeo from "./utils/getGeo";
 
 library.add(faTimes);
 library.add(faPlus);
@@ -68,6 +69,7 @@ class App extends Component {
         });
       }
     });
+
   }
 
   handleClick = town => {
@@ -101,8 +103,10 @@ class App extends Component {
     })
   }
 
+
   render() {
     let { town, townData, isCelsius, isKmPerHour, successRequest, showForecast } = this.state;
+    getGeo()
 
     return (
       <div className="App">

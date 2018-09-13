@@ -3,7 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class TownInput extends Component {
 	state = {
-		town: ""
+		town: "",
+
 	};
 
 	render() {
@@ -13,11 +14,14 @@ class TownInput extends Component {
 					icon="plus"
 					onClick={() => {
 						this.props.getLocalStorage(this.state.town);
+						this.setState({
+							town: '',
+						})
 					}}
 					className="remove-town fa-lg"
 				/>
 				<input
-					class="town-input"
+					className="town-input"
 					value={this.state.town}
 					onKeyPress={e => {
 						e.key == "Enter" && this.props.getDataOnClick(this.state.town);

@@ -1,5 +1,7 @@
+import moment from "moment";
 import React, { Component } from "react";
 import "./WeatherContent.css";
+
 class WeatherContent extends Component {
 	render() {
 		const {
@@ -31,9 +33,9 @@ class WeatherContent extends Component {
 		}
 		if (selectedTown.current) {
 			forecastObj = selectedTown.forecast.forecastday;
-			forecastList = forecastObj.map(item => (
-				<div className="forecast-block">
-					<span>{item.date}</span>
+			forecastList = forecastObj.map((item,index) => (
+				<div className="forecast-block" key={index}>
+				 <span>{moment(item.date).format('LLLL')}</span> 
 					<span>
 						{isCelsius ? item.day.avgtemp_c : item.day.avgtemp_f}{" "}
 						&#176; {tempText}
@@ -52,6 +54,7 @@ class WeatherContent extends Component {
 		const forecastStyle = `weather-info__forcast${
 			showForecast ? "" : "--toggle"
 		}`;
+		
 
 		return (
 			<div className="weather-content">

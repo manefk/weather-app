@@ -10,9 +10,9 @@ const Filters = props => {
 
 	return (
 		<div className={toggle}>
-			<span class="toggle-filters" onClick = {toggleFilters}> <FontAwesomeIcon icon={awesomeIcon} className="arrow-icon" /></span>
+			<span className="toggle-filters" onClick = {toggleFilters}> <FontAwesomeIcon icon={awesomeIcon} className="arrow-icon" /></span>
 
-			<div onClick={switchTemp} className="filter">
+			<div onClick={switchTemp} onDoubleClick={e => e.preventDefault()} className="filter">
 				<span className={isCelsius ? "" : "filter__active"}>in Farenheit</span>
 				<span className={!isCelsius ? "" : "filter__active"}>in Celcius </span>
 			</div>
