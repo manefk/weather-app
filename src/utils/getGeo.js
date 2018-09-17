@@ -18,27 +18,11 @@ function successFunction(position) {
 function errorFunction() {
   alert("Geocoder failed");
 }
-var geocoder;
-function initialize() {
-    geocoder = new google.maps.Geocoder();
-}
+
 
 function codeLatLng(lat, lng) {
-    var latlng = new google.maps.LatLng(lat, lng);
-    geocoder.geocode({'latLng': latlng}, function(results, status) {
-      if(status == google.maps.GeocoderStatus.OK) {
-          console.log(results)
-          if(results[1]) {
-              //formatted address
-              var address = results[0].formatted_address;
-              alert("address = " + address);
-          } else {
-              alert("No results found");
-          }
-      } else {
-          alert("Geocoder failed due to: " + status);
-      }
-    });
+    return fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&sensor=true`)
+    
 }
 export default getGeo;
 

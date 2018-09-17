@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-//import getGeo from "./utils/getGeo";
-
+import getGeo from "./utils/getGeo";
 
 import TownList from "./TownList/TownList";
 import WeatherContent from "./WeatherContent/WeatherContent";
@@ -11,9 +10,8 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { faArrowCircleRight} from '@fortawesome/free-solid-svg-icons';
-import { faArrowCircleLeft} from '@fortawesome/free-solid-svg-icons';
-
+import { faArrowCircleRight } from "@fortawesome/free-solid-svg-icons";
+import { faArrowCircleLeft } from "@fortawesome/free-solid-svg-icons";
 
 library.add(faTimes);
 library.add(faPlus);
@@ -30,40 +28,34 @@ class App extends Component {
     forecast: false,
     showFilters: true,
     showForecast: false,
+    showMap: false,
     daysAmount: 7
+  };
 
-  }
-  
-  changeDayAmount = (e) => {
-    console.log(e.target.value)
-    this.setState({daysAmount: e.target.value});
-    this.getTownData(this.state.townData.location.name)
-  }
+  changeDayAmount = e => {
+    console.log(e.target.value);
+    this.setState({ daysAmount: e.target.value });
+    this.getTownData(this.state.townData.location.name);
+  };
 
-  getTownPromise = (town) => fetch(
-      
-      `http://api.apixu.com/v1/forecast.json?key=b2ba067623484cd9ab9135213181308&q=${town}&lang=en&days=${this.state.daysAmount}`
-    )
-  
+  getTownPromise = town =>
+    fetch(
+      `http://api.apixu.com/v1/forecast.json?key=b2ba067623484cd9ab9135213181308&q=${town}&lang=en&days=${
+        this.state.daysAmount
+      }`
+    );
 
-  getTownData = (town) => {
-    
-  
+  getTownData = town => {
     this.getTownPromise(town).then(response => {
-    
       if (response.status !== 200) {
         console.log(
           `Looks like there was a problem. Status Code: ${response.status}`
         );
         this.setState({
-
           successRequest: false,
           townData: {}
         });
-      
-      } 
-      else {
-        
+      } else {
         response.json().then(data => {
           this.setState({
             townData: data,
@@ -72,44 +64,55 @@ class App extends Component {
         });
       }
     });
-
-  }
+  };
 
   handleClick = town => {
     this.getTownData(town);
     this.setState({
       town: town
     });
-  }
+  };
 
   switchTemp = () => {
     this.setState({ isCelsius: !this.state.isCelsius });
-  }
+  };
   switchSpeed = () => {
     this.setState({
       isKmPerHour: !this.state.isKmPerHour
     });
-  }
-  /*
+  };
+  
    componentDidMount() {
-    const {town} = this.state;
+    getGeo();
     }
-  */
+  
   toggleFilters = () => {
     this.setState({
-      showFilters: !this.state.showFilters,
-    })
-  }
+      showFilters: !this.state.showFilters
+    });
+  };
   toggleForecast = () => {
     this.setState({
-      showForecast: !this.state.showForecast,
-    })
-  }
-
+      showForecast: !this.state.showForecast
+    });
+  };
+  toggleMap = () => {
+    this.setState({
+      showMap: !this.state.showMap
+    });
+  };
 
   render() {
-    let { town, townData, isCelsius, isKmPerHour, successRequest, showForecast } = this.state;
-   // getGeo()
+    let {
+      town,
+      townData,
+      isCelsius,
+      isKmPerHour,
+      successRequest,
+      showForecast,
+      showMap
+    } = this.state;
+    getGeo()
 
     return (
       <div className="App">
@@ -117,7 +120,7 @@ class App extends Component {
           town={town}
           handleClick={this.handleClick}
           getDataOnClick={this.getTownData}
-          getTownPromise = {this.getTownPromise}
+          getTownPromise={this.getTownPromise}
           successRequest={successRequest}
           selectedTown={townData}
         />
@@ -127,6 +130,7 @@ class App extends Component {
           isKmPerHour={isKmPerHour}
           successRequest={successRequest}
           showForecast={showForecast}
+          showMap={showMap}
         />
         <Filters
           switchTemp={this.switchTemp}
@@ -136,10 +140,12 @@ class App extends Component {
           toggleFilters={this.toggleFilters}
           showFilters={this.state.showFilters}
           toggleForecast={this.toggleForecast}
-          showForecast ={showForecast}
-          getTownData ={this.getTownData}
+          showForecast={showForecast}
+          getTownData={this.getTownData}
           getTownPromise={this.getTownPromise}
           changeDayAmount={this.changeDayAmount}
+          toggleMap = {this.toggleMap}
+          showMap={showMap}
         />
       </div>
     );

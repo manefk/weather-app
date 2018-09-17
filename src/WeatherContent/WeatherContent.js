@@ -1,5 +1,6 @@
 import moment from "moment";
 import React, { Component } from "react";
+import Map from "./Map/Map.js"
 import "./WeatherContent.css";
 
 class WeatherContent extends Component {
@@ -9,7 +10,8 @@ class WeatherContent extends Component {
 			isCelsius,
 			isKmPerHour,
 			successRequest,
-			showForecast
+			showForecast,
+			showMap,
 		} = this.props;
 		const tempText = isCelsius ? `C` : `F`;
 		const tempSpeed = isKmPerHour ? `км/h` : `м/h`;
@@ -120,6 +122,7 @@ class WeatherContent extends Component {
 						</div>
 					</React.Fragment>
 				)}
+				{showMap && <Map/>}
 			</div>
 		);
 	}
