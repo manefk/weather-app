@@ -17,8 +17,8 @@ const Filters = props => {
 				<span className={!isCelsius ? "" : "filter__active"}>in Celcius </span>
 			</div>
 			<div onClick={switchSpeed} className="filter">
-				<span className={isKmPerHour ? "" : "filter__active"}>km/h</span>
-				<span className={!isKmPerHour ? "" : "filter__active"}>m/h</span>
+				<span className={isKmPerHour ? "" : "filter__active"}>m/h</span>
+				<span className={!isKmPerHour ? "" : "filter__active"}>km/h</span>
 			</div>
 			<div onClick = {toggleForecast} className="filter">
 				<span className={!showForecast ? "filter__active" : ""}>current</span>

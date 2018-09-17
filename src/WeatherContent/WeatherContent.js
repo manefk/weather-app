@@ -12,9 +12,10 @@ class WeatherContent extends Component {
 			showForecast
 		} = this.props;
 		const tempText = isCelsius ? `C` : `F`;
-		const tempSpeed = isKmPerHour ? `км/c` : `м/с`;
+		const tempSpeed = isKmPerHour ? `км/h` : `м/h`;
 		let tempData = "";
 		let tempSpeedData = "";
+		let tempDataFeelsLike = "";
 		let forecastObj;
 		let forecastList;
 		if (selectedTown.current) {
@@ -26,6 +27,11 @@ class WeatherContent extends Component {
 			tempSpeedData = isKmPerHour
 				? selectedTown.current.wind_kph
 				: selectedTown.current.wind_mph;
+		}
+		if (selectedTown.current) {
+			tempDataFeelsLike = isCelsius
+				? selectedTown.current.feelslike_c
+				: selectedTown.current.feelslike_f;
 		}
 		let message = "Выберите город";
 		if (!successRequest) {
@@ -63,38 +69,46 @@ class WeatherContent extends Component {
 				) : (
 					<React.Fragment>
 						<div className="weather-info">
-							<div className="weather-info__temp">
-								<span>
+							<div className="weather-info__main">
+								<span className="weather-info__name">
 									{selectedTown.location.name}
 									<br />
 								</span>
-								<span>
-									{selectedTown.location.localtime}
+								<span className="weather-info__time">
+									{moment(selectedTown.location.localtime).format('LLLL')}
 									<br />
 								</span>
-								<span>
-									{tempData} &#176; {tempText}
+								<span className="weather-info__degree">
+									{tempData}&#176;{tempText}
 									<br />
 								</span>
-								<span>
+								<span className="weather-info__feelslike">
+									Feels like {tempDataFeelsLike}&#176;{tempText}
+									<br />
+								</span>
+								<span className="weather-info__descr">
 									{selectedTown.current.condition.text}
 								</span>
 							</div>
 							<div className="weather-info__aux">
 								<div>
-									<span>ветер</span> 
-									<span>{tempSpeedData} {tempSpeed}</span>
+									<span>ветер </span><br/> 
+									<div class="weather-info__aux__block">
+										<span className="weather-info__aux__number">{tempSpeedData}</span> {tempSpeed}
+										<span>{selectedTown.current.wind_dir}</span>
+									</div>
+									
 									
 								</div>
-								<span>
-									влажность {selectedTown.current.humidity} %
-									
-								</span>
-								<span>
-									давление {selectedTown.current.pressure_mb}{" "}
-									рт. ст.
-								
-								</span>
+								<div>
+									<span>влажность </span><br/>
+									<span><span className="weather-info__aux__number">{selectedTown.current.humidity}</span> %</span>
+								</div>
+								<div>
+									<span>давление </span><br/>
+									<span><span className="weather-info__aux__number">{selectedTown.current.pressure_mb}</span>{" "}
+										рт. ст.</span>
+								</div>
 							</div>
 						</div>
 						<div className={forecastStyle}>

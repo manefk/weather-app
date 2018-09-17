@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+//import getGeo from "./utils/getGeo";
+
 
 import TownList from "./TownList/TownList";
 import WeatherContent from "./WeatherContent/WeatherContent";
@@ -11,7 +13,7 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faArrowCircleRight} from '@fortawesome/free-solid-svg-icons';
 import { faArrowCircleLeft} from '@fortawesome/free-solid-svg-icons';
-import getGeo from "./utils/getGeo";
+
 
 library.add(faTimes);
 library.add(faPlus);
@@ -31,6 +33,7 @@ class App extends Component {
     daysAmount: 7
 
   }
+  
   changeDayAmount = (e) => {
     console.log(e.target.value)
     this.setState({daysAmount: e.target.value});
@@ -39,7 +42,7 @@ class App extends Component {
 
   getTownPromise = (town) => fetch(
       
-      `http://api.apixu.com/v1/forecast.json?key=b2ba067623484cd9ab9135213181308&q=${town}&lang=ru&days=${this.state.daysAmount}`
+      `http://api.apixu.com/v1/forecast.json?key=b2ba067623484cd9ab9135213181308&q=${town}&lang=en&days=${this.state.daysAmount}`
     )
   
 
@@ -106,7 +109,7 @@ class App extends Component {
 
   render() {
     let { town, townData, isCelsius, isKmPerHour, successRequest, showForecast } = this.state;
-    getGeo()
+   // getGeo()
 
     return (
       <div className="App">

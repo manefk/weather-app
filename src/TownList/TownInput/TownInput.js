@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "./TownInput.css";
 
 class TownInput extends Component {
 	state = {

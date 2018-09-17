@@ -35,33 +35,60 @@
   position: relative;
   right: 25px;
 }
-.weather-info__temp {
+.weather-info__main {
 
   flex: 1 1 100%;
+  padding-bottom: 15px;
   border-bottom: 1px solid white;
 }
-.weather-info__temp > span{
-  font-size: 72px;
+
+
+.weather-info__name {
+  font-size: 22px!important;
+  font-weight: bold;
 }
-.weather-info__temp > span:last-child{
-  font-size: 55px;
+.weather-info__time {
+  font-size: 22px !important;
+  font-weight: bold;
+}
+.weather-info__degree {
+  font-size: 130px !important;
+}
+
+.weather-info__descr {
+  font-size: 22px !important;
+  font-weight: bold;
+  text-align: center;
 }
 .weather-info__aux {
   flex: 1 1 30%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
   
 }
-.weather-info__img{
-  width: 150px;
-  height: auto;
+.weather-info__aux > div {
+
+}
+.weather-info__aux__block {
+  position: relative;
+}
+.weather-info__aux__block span:last-child {
+  font-size: 0.85rem;
+  position: absolute;
+  top: 9px;
+  left: 60px;
 }
 
+.weather-info__aux__number {
+  font-weight:bold;
+  font-size: 40px !important;
+}
 
 .weather-info__forcast {
 	margin-top: 20px;
-
-	 
- 	align-items: center;
-  	background: white;
+  align-items: center;
+  background: white;
 	box-shadow: 0 1px 1px rgba(0,0,0,.05);
 	padding: 20px;
 }
