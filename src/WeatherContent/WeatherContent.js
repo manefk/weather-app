@@ -1,6 +1,6 @@
 import moment from "moment";
 import React, { Component } from "react";
-import Map from "./Map/Map.js"
+import WeatherMap from "./Map/WeatherMap.js"
 import "./WeatherContent.css";
 
 class WeatherContent extends Component {
@@ -120,9 +120,10 @@ class WeatherContent extends Component {
 								{forecastList.slice(1)}
 							</div>
 						</div>
+						{showMap && <div className="weather-info__forcast"><WeatherMap/></div>}
 					</React.Fragment>
 				)}
-				{showMap && <Map/>}
+				
 			</div>
 		);
 	}

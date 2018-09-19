@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import getGeo from "./utils/getGeo";
-
 import TownList from "./TownList/TownList";
 import WeatherContent from "./WeatherContent/WeatherContent";
 import Filters from "./Filters/Filters";
 import "./App.css";
-
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
@@ -83,7 +81,8 @@ class App extends Component {
   };
   
    componentDidMount() {
-    getGeo();
+    let res = getGeo();
+    console.log(res)
     }
   
   toggleFilters = () => {
@@ -112,7 +111,7 @@ class App extends Component {
       showForecast,
       showMap
     } = this.state;
-    getGeo()
+   
 
     return (
       <div className="App">

@@ -30,8 +30,6 @@ const Filters = props => {
 				<span className={showMap ? "filter__active" : ""}>show map</span>
 				<span className={!showMap ? "filter__active" : ""}>hide map</span>
 			</div>
-
-			
 		</div>
 	);
 };

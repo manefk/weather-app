@@ -11,7 +11,7 @@ var getGeo = () => {
 function successFunction(position) {
   var lat = position.coords.latitude;
   var lng = position.coords.longitude;
-  codeLatLng(lat, lng);
+  return [lat,lng] 
   
 }
 
