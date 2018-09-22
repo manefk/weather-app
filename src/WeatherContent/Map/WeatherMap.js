@@ -5,10 +5,10 @@ import "./Map.css";
 
 const WeatherMap= props => {
 	
- 	const position = [51.505, -0.09]
+ 	const position = props.coordinates;
 		
 	return (
-		<Map center={position} zoom={13}>
+		<Map center={position} zoom={18}>
   			 	 <TileLayer
     			 	 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
     				  attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"

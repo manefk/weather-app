@@ -1,9 +1,11 @@
 
 var geocoder;
-var getGeo = () => {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(successFunction, errorFunction);
-  }
+export var getGeo = () => {
+	return new Promise((successFunction, errorFunction) => {
+ 		 if (navigator.geolocation) {
+ 		   navigator.geolocation.getCurrentPosition(successFunction, errorFunction);
+	  }
+	})
 
 };
 
@@ -11,7 +13,7 @@ var getGeo = () => {
 function successFunction(position) {
   var lat = position.coords.latitude;
   var lng = position.coords.longitude;
-  return [lat,lng] 
+  return codeLatLng(lat,lng) 
   
 }
 
@@ -19,10 +21,9 @@ function errorFunction() {
   alert("Geocoder failed");
 }
 
-
-function codeLatLng(lat, lng) {
+export function codeLatLng(lat, lng) {
     return fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&sensor=true`)
     
 }
-export default getGeo;
+
 

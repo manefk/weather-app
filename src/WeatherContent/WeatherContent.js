@@ -120,7 +120,7 @@ class WeatherContent extends Component {
 								{forecastList.slice(1)}
 							</div>
 						</div>
-						{showMap && <div className="weather-info__forcast"><WeatherMap/></div>}
+						{showMap && <div className="weather-info__forcast"><WeatherMap coordinates={this.props.coordinates}/></div>}
 					</React.Fragment>
 				)}
 				

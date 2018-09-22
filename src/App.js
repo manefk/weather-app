@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import getGeo from "./utils/getGeo";
+import {getGeo, codeLatLng} from "./utils/getGeo";
 import TownList from "./TownList/TownList";
 import WeatherContent from "./WeatherContent/WeatherContent";
 import Filters from "./Filters/Filters";
@@ -18,7 +18,7 @@ library.add(faArrowCircleLeft);
 
 class App extends Component {
   state = {
-    town: "Калуга",
+    town: "",
     townData: {},
     isCelsius: true,
     isKmPerHour: true,
@@ -27,11 +27,12 @@ class App extends Component {
     showFilters: true,
     showForecast: false,
     showMap: false,
-    daysAmount: 7
+    daysAmount: 7,
+    coordinates:[],
   };
 
   changeDayAmount = e => {
-    console.log(e.target.value);
+  
     this.setState({ daysAmount: e.target.value });
     this.getTownData(this.state.townData.location.name);
   };
@@ -72,34 +73,68 @@ class App extends Component {
   };
 
   switchTemp = () => {
-    this.setState({ isCelsius: !this.state.isCelsius });
+    this.setState(prevState => { 
+      return {
+       isCelsius: !prevState.isCelsius  
+      }
+      
+    });
   };
   switchSpeed = () => {
-    this.setState({
-      isKmPerHour: !this.state.isKmPerHour
+    this.setState(prevState => {
+      return {
+        isKmPerHour: !prevState.isKmPerHour
+      }
+      
     });
   };
   
    componentDidMount() {
     let res = getGeo();
-    console.log(res)
+    res.then(position => {
+      this.setState(
+      {
+        coordinates: [position.coords.latitude, position.coords.longitude]
+      })
+      var lat = position.coords.latitude;
+      var lng = position.coords.longitude;
+      codeLatLng(lat,lng)
+        .then(response => response.json()
+                          .then(town => this.getTownData(town.results[0].address_components[1].short_name)))
+    })
+    
     }
   
   toggleFilters = () => {
-    this.setState({
-      showFilters: !this.state.showFilters
+    this.setState((prevState, props) => {
+      return {
+        showFilters: !prevState.showFilters
+      }  
     });
   };
+  
   toggleForecast = () => {
-    this.setState({
-      showForecast: !this.state.showForecast
+    this.setState(prevState => {
+      return {
+          showForecast: !prevState.showForecast
+      }
+    
     });
   };
   toggleMap = () => {
-    this.setState({
-      showMap: !this.state.showMap
+    this.setState(prevState =>{
+      return {
+        showMap: !prevState.showMap
+      }
+      
     });
   };
+  toggle = (something) => {
+    this.setState(
+    {
+      [something]: !this.state[something]
+    })
+  }
 
   render() {
     let {
@@ -129,6 +164,7 @@ class App extends Component {
           isKmPerHour={isKmPerHour}
           successRequest={successRequest}
           showForecast={showForecast}
+          coordinates = {this.state.coordinates}
           showMap={showMap}
         />
         <Filters
