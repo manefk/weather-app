@@ -1,6 +1,6 @@
 import moment from "moment";
 import React, { Component } from "react";
-import WeatherMap from "./Map/WeatherMap.js"
+import WeatherMap from "./Map/WeatherMap.js";
 import "./WeatherContent.css";
 
 class WeatherContent extends Component {
@@ -11,7 +11,7 @@ class WeatherContent extends Component {
 			isKmPerHour,
 			successRequest,
 			showForecast,
-			showMap,
+			showMap
 		} = this.props;
 		const tempText = isCelsius ? `C` : `F`;
 		const tempSpeed = isKmPerHour ? `км/h` : `м/h`;
@@ -41,9 +41,9 @@ class WeatherContent extends Component {
 		}
 		if (selectedTown.current) {
 			forecastObj = selectedTown.forecast.forecastday;
-			forecastList = forecastObj.map((item,index) => (
+			forecastList = forecastObj.map((item, index) => (
 				<div className="forecast-block" key={index}>
-				 <span>{moment(item.date).format('LLLL')}</span> 
+					<span>{moment(item.date).format("LLLL")}</span>
 					<span>
 						{isCelsius ? item.day.avgtemp_c : item.day.avgtemp_f}{" "}
 						&#176; {tempText}
@@ -62,7 +62,6 @@ class WeatherContent extends Component {
 		const forecastStyle = `weather-info__forcast${
 			showForecast ? "" : "--toggle"
 		}`;
-		
 
 		return (
 			<div className="weather-content">
@@ -77,15 +76,21 @@ class WeatherContent extends Component {
 									<br />
 								</span>
 								<span className="weather-info__time">
-									{moment(selectedTown.location.localtime).format('LLLL')}
+									{moment(
+										selectedTown.location.localtime
+									).format("LLLL")}
 									<br />
 								</span>
 								<span className="weather-info__degree">
-									{tempData}&#176;{tempText}
+									{tempData}
+									&#176;
+									{tempText}
 									<br />
 								</span>
 								<span className="weather-info__feelslike">
-									Feels like {tempDataFeelsLike}&#176;{tempText}
+									Feels like {tempDataFeelsLike}
+									&#176;
+									{tempText}
 									<br />
 								</span>
 								<span className="weather-info__descr">
@@ -94,22 +99,37 @@ class WeatherContent extends Component {
 							</div>
 							<div className="weather-info__aux">
 								<div>
-									<span>ветер </span><br/> 
+									<span>ветер </span>
+									<br />
 									<div class="weather-info__aux__block">
-										<span className="weather-info__aux__number">{tempSpeedData}</span> {tempSpeed}
-										<span>{selectedTown.current.wind_dir}</span>
+										<span className="weather-info__aux__number">
+											{tempSpeedData}
+										</span>{" "}
+										{tempSpeed}
+										<span>
+											{selectedTown.current.wind_dir}
+										</span>
 									</div>
-									
-									
 								</div>
 								<div>
-									<span>влажность </span><br/>
-									<span><span className="weather-info__aux__number">{selectedTown.current.humidity}</span> %</span>
+									<span>влажность </span>
+									<br />
+									<span>
+										<span className="weather-info__aux__number">
+											{selectedTown.current.humidity}
+										</span>{" "}
+										%
+									</span>
 								</div>
 								<div>
-									<span>давление </span><br/>
-									<span><span className="weather-info__aux__number">{selectedTown.current.pressure_mb}</span>{" "}
-										рт. ст.</span>
+									<span>давление </span>
+									<br />
+									<span>
+										<span className="weather-info__aux__number">
+											{selectedTown.current.pressure_mb}
+										</span>{" "}
+										рт. ст.
+									</span>
 								</div>
 							</div>
 						</div>
@@ -120,10 +140,18 @@ class WeatherContent extends Component {
 								{forecastList.slice(1)}
 							</div>
 						</div>
-						{showMap && <div className="weather-info__forcast"><WeatherMap coordinates={this.props.coordinates}/></div>}
+						{showMap && (
+							<div className="weather-info__forcast">
+								<WeatherMap
+									coordinates={[
+										selectedTown.location.lat,
+										selectedTown.location.lon
+									]}
+								/>
+							</div>
+						)}
 					</React.Fragment>
 				)}
-				
 			</div>
 		);
 	}
