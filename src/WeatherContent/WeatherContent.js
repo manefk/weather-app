@@ -2,6 +2,7 @@ import moment from "moment";
 import React, { Component } from "react";
 import WeatherMap from "./Map/WeatherMap.js";
 import "./WeatherContent.css";
+import AppProvider from "../Context.js";
 
 class WeatherContent extends Component {
 	render() {
@@ -64,7 +65,10 @@ class WeatherContent extends Component {
 		}`;
 
 		return (
-			<div className="weather-content">
+			<AppContext.Consumer>
+			{
+				(townData) => (
+					<div className="weather-content">
 				{Object.keys(selectedTown).length == 0 ? (
 					message
 				) : (
@@ -153,6 +157,11 @@ class WeatherContent extends Component {
 					</React.Fragment>
 				)}
 			</div>
+
+				)
+			}
+			</AppContext.Consumer>
+			
 		);
 	}
 }

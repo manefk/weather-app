@@ -10,11 +10,12 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faArrowCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { faArrowCircleLeft } from "@fortawesome/free-solid-svg-icons";
-
 library.add(faTimes);
 library.add(faPlus);
 library.add(faArrowCircleRight);
 library.add(faArrowCircleLeft);
+
+const AppContext = React.createContext()
 
 class App extends Component {
   state = {
@@ -52,7 +53,8 @@ class App extends Component {
         );
         this.setState({
           successRequest: false,
-          townData: {}
+          townData: {},
+
         });
       } else {
         response.json().then(data => {
@@ -150,23 +152,27 @@ class App extends Component {
 
     return (
       <div className="App">
-        <TownList
-          town={town}
-          handleClick={this.handleClick}
-          getDataOnClick={this.getTownData}
-          getTownPromise={this.getTownPromise}
-          successRequest={successRequest}
-          selectedTown={townData}
-        />
-        <WeatherContent
-          selectedTown={townData}
-          isCelsius={isCelsius}
-          isKmPerHour={isKmPerHour}
-          successRequest={successRequest}
-          showForecast={showForecast}
-          coordinates = {this.state.coordinates}
-          showMap={showMap}
-        />
+      <AppContext.Provider value={townData}>
+          <TownList
+            town={town}
+            handleClick={this.handleClick}
+            getDataOnClick={this.getTownData}
+            getTownPromise={this.getTownPromise}
+            successRequest={successRequest}
+          
+          />
+        </AppContext.Provider>
+        <AppContext.Provider value={townData}>
+          <WeatherContent
+            selectedTown={townData}
+            isCelsius={isCelsius}
+            isKmPerHour={isKmPerHour}
+            successRequest={successRequest}
+            showForecast={showForecast}
+            coordinates = {this.state.coordinates}
+            showMap={showMap}
+          />
+        </AppContext.Provider>
         <Filters
           switchTemp={this.switchTemp}
           switchSpeed={this.switchSpeed}
