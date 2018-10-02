@@ -2,17 +2,18 @@ import moment from "moment";
 import React, { Component } from "react";
 import WeatherMap from "./Map/WeatherMap.js";
 import "./WeatherContent.css";
-import AppProvider from "../Context.js";
+import {AppProvider, AppContext} from "../Context.js";
+
 
 class WeatherContent extends Component {
-	render() {
+	render() {		
 		const {
-			selectedTown,
+			townData,
 			isCelsius,
 			isKmPerHour,
 			successRequest,
 			showForecast,
-			showMap
+			showMap,
 		} = this.props;
 		const tempText = isCelsius ? `C` : `F`;
 		const tempSpeed = isKmPerHour ? `км/h` : `м/h`;
@@ -21,27 +22,27 @@ class WeatherContent extends Component {
 		let tempDataFeelsLike = "";
 		let forecastObj;
 		let forecastList;
-		if (selectedTown.current) {
+		if (townData.current) {
 			tempData = isCelsius
-				? selectedTown.current.temp_c
-				: selectedTown.current.temp_f;
+				? townData.current.temp_c
+				: townData.current.temp_f;
 		}
-		if (selectedTown.current) {
+		if (townData.current) {
 			tempSpeedData = isKmPerHour
-				? selectedTown.current.wind_kph
-				: selectedTown.current.wind_mph;
+				? townData.current.wind_kph
+				: townData.current.wind_mph;
 		}
-		if (selectedTown.current) {
+		if (townData.current) {
 			tempDataFeelsLike = isCelsius
-				? selectedTown.current.feelslike_c
-				: selectedTown.current.feelslike_f;
+				? townData.current.feelslike_c
+				: townData.current.feelslike_f;
 		}
 		let message = "Выберите город";
 		if (!successRequest) {
 			message = "Неправильно введен город";
 		}
-		if (selectedTown.current) {
-			forecastObj = selectedTown.forecast.forecastday;
+		if (townData.current) {
+			forecastObj = townData.forecast.forecastday;
 			forecastList = forecastObj.map((item, index) => (
 				<div className="forecast-block" key={index}>
 					<span>{moment(item.date).format("LLLL")}</span>
@@ -63,106 +64,116 @@ class WeatherContent extends Component {
 		const forecastStyle = `weather-info__forcast${
 			showForecast ? "" : "--toggle"
 		}`;
-
-		return (
-			<AppContext.Consumer>
-			{
-				(townData) => (
-					<div className="weather-content">
-				{Object.keys(selectedTown).length == 0 ? (
-					message
-				) : (
-					<React.Fragment>
-						<div className="weather-info">
-							<div className="weather-info__main">
-								<span className="weather-info__name">
-									{selectedTown.location.name}
-									<br />
-								</span>
-								<span className="weather-info__time">
-									{moment(
-										selectedTown.location.localtime
-									).format("LLLL")}
-									<br />
-								</span>
-								<span className="weather-info__degree">
-									{tempData}
-									&#176;
-									{tempText}
-									<br />
-								</span>
-								<span className="weather-info__feelslike">
-									Feels like {tempDataFeelsLike}
-									&#176;
-									{tempText}
-									<br />
-								</span>
-								<span className="weather-info__descr">
-									{selectedTown.current.condition.text}
-								</span>
-							</div>
-							<div className="weather-info__aux">
-								<div>
-									<span>ветер </span>
-									<br />
-									<div class="weather-info__aux__block">
-										<span className="weather-info__aux__number">
-											{tempSpeedData}
-										</span>{" "}
-										{tempSpeed}
-										<span>
-											{selectedTown.current.wind_dir}
-										</span>
-									</div>
-								</div>
-								<div>
-									<span>влажность </span>
-									<br />
-									<span>
-										<span className="weather-info__aux__number">
-											{selectedTown.current.humidity}
-										</span>{" "}
-										%
-									</span>
-								</div>
-								<div>
-									<span>давление </span>
-									<br />
-									<span>
-										<span className="weather-info__aux__number">
-											{selectedTown.current.pressure_mb}
-										</span>{" "}
-										рт. ст.
-									</span>
-								</div>
-							</div>
-						</div>
-						<div className={forecastStyle}>
-							<h2>Прогноз погоды</h2>
-
-							<div className="forecast__container">
-								{forecastList.slice(1)}
-							</div>
-						</div>
-						{showMap && (
-							<div className="weather-info__forcast">
-								<WeatherMap
-									coordinates={[
-										selectedTown.location.lat,
-										selectedTown.location.lon
-									]}
-								/>
-							</div>
-						)}
-					</React.Fragment>
-				)}
-			</div>
-
-				)
-			}
-			</AppContext.Consumer>
+		return 'jkjkj'
+		// return (
 			
-		);
+				
+		// 				<div className="weather-content">
+
+		// 					{Object.keys(context.townData).length == 0 ? (
+		// 						message
+		// 					) : (
+		// 						<React.Fragment>
+		// 							<div className="weather-info">
+		// 								<div className="weather-info__main">
+		// 									<span className="weather-info__name">
+		// 										{context.townData.location.name}
+		// 										<br />
+		// 									</span>
+		// 									<span className="weather-info__time">
+		// 										{moment(
+		// 											context.townData.location.localtime
+		// 										).format("LLLL")}
+		// 										<br />
+		// 									</span>
+		// 									<span className="weather-info__degree">
+		// 										{tempData}
+		// 										&#176;
+		// 										{tempText}
+		// 										<br />
+		// 									</span>
+		// 									<span className="weather-info__feelslike">
+		// 										Feels like {tempDataFeelsLike}
+		// 										&#176;
+		// 										{tempText}
+		// 										<br />
+		// 									</span>
+		// 									<span className="weather-info__descr">
+		// 										{
+		// 											context.townData.current.condition
+		// 												.text
+		// 										}
+		// 									</span>
+		// 								</div>
+		// 								<div className="weather-info__aux">
+		// 									<div>
+		// 										<span>ветер </span>
+		// 										<br />
+		// 										<div class="weather-info__aux__block">
+		// 											<span className="weather-info__aux__number">
+		// 												{tempSpeedData}
+		// 											</span>{" "}
+		// 											{tempSpeed}
+		// 											<span>
+		// 												{
+		// 													context.townData.current
+		// 														.wind_dir
+		// 												}
+		// 											</span>
+		// 										</div>
+		// 									</div>
+		// 									<div>
+		// 										<span>влажность </span>
+		// 										<br />
+		// 										<span>
+		// 											<span className="weather-info__aux__number">
+		// 												{
+		// 													context.townData.current
+		// 														.humidity
+		// 												}
+		// 											</span>{" "}
+		// 											%
+		// 										</span>
+		// 									</div>
+		// 									<div>
+		// 										<span>давление </span>
+		// 										<br />
+		// 										<span>
+		// 											<span className="weather-info__aux__number">
+		// 												{
+		// 													context.townData.current
+		// 														.pressure_mb
+		// 												}
+		// 											</span>{" "}
+		// 											рт. ст.
+		// 										</span>
+		// 									</div>
+		// 								</div>
+		// 							</div>
+		// 							<div className={forecastStyle}>
+		// 								<h2>Прогноз погоды</h2>
+
+		// 								<div className="forecast__container">
+		// 									{forecastList.slice(1)}
+		// 								</div>
+		// 							</div>
+		// 							{showMap && (
+		// 								<div className="weather-info__forcast">
+		// 									<WeatherMap
+		// 										coordinates={[
+		// 											context.townData.location.lat,
+		// 											context.townData.location.lon
+		// 										]}
+		// 									/>
+		// 								</div>
+		// 							)}
+		// 						</React.Fragment>
+		// 					)}
+		// 				</div>
+					
+			
+			
+		// );
 	}
 }
 

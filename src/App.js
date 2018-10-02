@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {getGeo, codeLatLng} from "./utils/getGeo";
 import TownList from "./TownList/TownList";
-import WeatherContent from "./WeatherContent/WeatherContent";
+import WeatherContent from "./WeatherContent";
 import Filters from "./Filters/Filters";
 import "./App.css";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -15,7 +15,7 @@ library.add(faPlus);
 library.add(faArrowCircleRight);
 library.add(faArrowCircleLeft);
 
-const AppContext = React.createContext()
+
 
 class App extends Component {
   state = {
@@ -152,7 +152,7 @@ class App extends Component {
 
     return (
       <div className="App">
-      <AppContext.Provider value={townData}>
+    
           <TownList
             town={town}
             handleClick={this.handleClick}
@@ -161,10 +161,10 @@ class App extends Component {
             successRequest={successRequest}
           
           />
-        </AppContext.Provider>
-        <AppContext.Provider value={townData}>
+      
+          
           <WeatherContent
-            selectedTown={townData}
+          
             isCelsius={isCelsius}
             isKmPerHour={isKmPerHour}
             successRequest={successRequest}
@@ -172,7 +172,7 @@ class App extends Component {
             coordinates = {this.state.coordinates}
             showMap={showMap}
           />
-        </AppContext.Provider>
+
         <Filters
           switchTemp={this.switchTemp}
           switchSpeed={this.switchSpeed}
