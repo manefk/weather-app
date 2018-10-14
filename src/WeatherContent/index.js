@@ -6,12 +6,8 @@ import {AppContext} from '../Context';
 
 export default (props) => {
 	return (
-		<AppContext.Consumer>{(townData) => {
-				console.log(townData)
-			return <WeatherContent {...props} townData = {townData}/>
-		}
-
-
-		}</AppContext.Consumer>
+		<AppContext.Consumer>
+			{ ({townData, filters}) => <WeatherContent {...props} townData = {townData} filters = {filters}/>}
+		</AppContext.Consumer>
 	)
 }

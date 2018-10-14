@@ -2,13 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import {AppContext} from './Context'
+import {AppContext, AppProvider} from './Context'
 
 
 
-ReactDOM.render(<AppContext.Provider><AppContext.Consumer>{(townData) => {
-				console.log(townData)
-			return <App />
-		}}
-			</AppContext.Consumer></AppContext.Provider>, document.getElementById('root'));
+ReactDOM.render(<AppProvider>
+					<AppContext.Consumer>{(townData) => {
+						console.log(townData)
+						return <App />
+						}}
+					</AppContext.Consumer>
+				</AppProvider>, document.getElementById('root'));
 

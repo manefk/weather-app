@@ -9,12 +9,15 @@ class TownInput extends Component {
 	};
 
 	render() {
+		const {
+		 town, getLocalStorage, removeLocalStorage, getDataOnClick
+		} = this.props;
 		return (
 			<div className="town-list__input">
 				<FontAwesomeIcon
 					icon="plus"
 					onClick={() => {
-						this.props.getLocalStorage(this.state.town);
+						getLocalStorage(this.state.town);
 						this.setState({
 							town: '',
 						})
@@ -25,7 +28,7 @@ class TownInput extends Component {
 					className="town-input"
 					value={this.state.town}
 					onKeyPress={e => {
-						e.key == "Enter" && this.props.getDataOnClick(this.state.town);
+						e.key == "Enter" && getDataOnClick(this.state.town);
 					}}
 					placeholder="Введите город"
 					onChange={event => {
