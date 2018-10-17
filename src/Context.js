@@ -129,7 +129,9 @@ class AppProvider extends Component {
       });
       var lat = position.coords.latitude;
       var lng = position.coords.longitude;
-      codeLatLng(lat, lng).then(response => response.json().then(town => this.getTownData("Kaluga")));
+      codeLatLng(lat, lng)
+        .then(response => response.json()
+        .then(town => this.getTownData("Kaluga")));
     });
   }
 

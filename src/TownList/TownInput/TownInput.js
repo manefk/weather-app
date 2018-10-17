@@ -1,28 +1,23 @@
 import React, { Component } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./TownInput.css";
 
 class TownInput extends Component {
 	state = {
-		town: "",
-
+		town: ""
 	};
 
 	render() {
-		const {
-		 town, getLocalStorage, removeLocalStorage, getDataOnClick
-		} = this.props;
+		const { town, getLocalStorage, removeLocalStorage, getDataOnClick } = this.props;
 		return (
 			<div className="town-list__input">
-				<FontAwesomeIcon
-					icon="plus"
+				<i
 					onClick={() => {
 						getLocalStorage(this.state.town);
 						this.setState({
-							town: '',
-						})
+							town: ""
+						});
 					}}
-					className="remove-town fa-lg"
+					className="remove-town fas fa-plus fa-lg"
 				/>
 				<input
 					className="town-input"
@@ -35,7 +30,6 @@ class TownInput extends Component {
 						this.setState({ town: event.target.value });
 					}}
 				/>
-				{/*<button className="input__button" onClick={() => {this.props.getDataOnClick(this.state.town)}}><img src="https://png.icons8.com/material-two-tone/50/000000/search.png"/></button> */}
 			</div>
 		);
 	}

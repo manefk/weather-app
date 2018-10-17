@@ -1,19 +1,14 @@
 import React, { Component } from "react";
 import "./Filters.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Filters = props => {
 	let { filters, toggleFilters, toggleForecast, toggleMap, switchTemp, switchSpeed, changeDayAmount } = props;
-	console.log(filters)
 	let toggle = filters.showFilters ? "filters" : "filters filters" + "--toggle";
-	const awesomeIcon = filters.showFilters ? "arrow-circle-right" : "arrow-circle-left";
-
-
-
+	const awesomeIcon = filters.showFilters ? "fa-arrow-circle-right" : "fa-arrow-circle-left";
 
 	return (
 		<div className={toggle}>
-			<span className="toggle-filters" onClick = {toggleFilters}> <FontAwesomeIcon icon={awesomeIcon} className="arrow-icon" /></span>
+			<span className="toggle-filters" onClick = {toggleFilters}> <i className={`arrow-icon fas ${awesomeIcon}`}></i></span>
 
 			<div onClick={switchTemp} onDoubleClick={e => e.preventDefault()} className="filter">
 				<span className={filters.isCelsius ? "" : "filter__active"}>in Farenheit</span>
