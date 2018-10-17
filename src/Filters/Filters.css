@@ -66,6 +66,17 @@ input[type=checkbox] {
 	transition: all 0.1s;
 }
 
+@media (max-width: 1200px) {
+  .filters {
+  	height: auto;
+  	flex: 1 0 100%;
+   
+  }
+  .toggle-filters {
+  	display: none;
+  }
+}
+
 @media (max-width: 750px) {
 	
 }

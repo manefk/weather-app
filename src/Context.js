@@ -22,7 +22,7 @@ class AppProvider extends Component {
     localStorageTowns: JSON.parse(localStorage.getItem("myTown")) || []
   };
   getTownPromise = town =>
-    fetch(`http://api.apixu.com/v1/forecast.json?key=b2ba067623484cd9ab9135213181308&q=${town}&lang=en&days=${this.state.daysAmount}`);
+  console.log('days',this.state.filters.daysAmount) ||    fetch(`http://api.apixu.com/v1/forecast.json?key=b2ba067623484cd9ab9135213181308&q=${town}&lang=en&days=${this.state.filters.daysAmount}`);
 
   getTownData = town => {
     this.getTownPromise(town).then(response => {
@@ -118,6 +118,8 @@ class AppProvider extends Component {
     let filters = { ...this.state.filters };
     filters.daysAmount = e.target.value;
     this.setState({ filters });
+    console.log('e.target.value', e.target.value);
+    console.log('filters',filters);
     this.getTownData(this.state.townData.location.name);
   };
 

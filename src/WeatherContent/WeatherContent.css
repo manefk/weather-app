@@ -3,7 +3,8 @@
   background:#F1F4F5;
   flex: 1 1 550px;
   padding: 20px;
-  min-width: ;
+  overflow-y: auto;
+
 
 }
 
@@ -121,6 +122,11 @@
   display: block;
 }
 @media (max-width: 1200px) {
+  .weather-content {
+    order: 3;
+    flex: 1 0 100%;
+  
+  }
   .forecast__container >div{
     width: 48%;
   }

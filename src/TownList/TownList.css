@@ -2,6 +2,7 @@
   background: #EDEDED;
   flex: 0 0 300px;
   padding: 20px;
+
 }
 
 .town-list ul {
@@ -9,7 +10,8 @@
   flex-wrap: wrap;
   list-style: none;
   padding-left: 0px;
-}
+ }
+
 .town-list__town {
   
   
@@ -53,3 +55,9 @@
   padding: 0 10px;
   }
 
+@media (max-width: 1200px) {
+  .town-list {
+    flex: 1 0 100%;
+    /*width: 100%;*/
+  }
+}
